@@ -36,6 +36,24 @@ send_message:
       filter:
         supported_features:
           - notify.NotifyEntityFeature.TITLE
+    priority:
+      required: false
+      selector:
+        select:
+          options:
+            - label: "Minimum"
+              value: "1"
+            - label: "Low"
+              value: "2"
+            - label: "Normal"
+              value: "3"
+            - label: "High"
+              value: "4"
+            - label: "Highest"
+              value: "5"
+      filter:
+        supported_features:
+          - notify.NotifyEntityFeature.PRIORITY
 
 persistent_notification:
   fields:

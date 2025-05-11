@@ -37,7 +37,12 @@ class TibberNotificationEntity(NotifyEntity):
         """Initialize Tibber notify entity."""
         self._attr_unique_id = unique_id
 
-    async def async_send_message(self, message: str, title: str | None = None) -> None:
+    async def async_send_message(
+        self,
+        message: str,
+        title: str | None = None,
+        priority: int | None = None,
+    ) -> None:
         """Send a message to Tibber devices."""
         tibber_connection: Tibber = self.hass.data[DOMAIN]
         try:

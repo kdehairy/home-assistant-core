@@ -50,7 +50,7 @@ class NtfyNotifyEntity(NotifyEntity):
         name=None,
         has_entity_name=True,
     )
-    _attr_supported_features = NotifyEntityFeature.TITLE
+    _attr_supported_features = NotifyEntityFeature.TITLE | NotifyEntityFeature.PRIORITY
 
     def __init__(
         self,
@@ -73,9 +73,12 @@ class NtfyNotifyEntity(NotifyEntity):
         self.config_entry = config_entry
         self.ntfy = config_entry.runtime_data
 
-    async def async_send_message(self, message: str, title: str | None = None) -> None:
+    async def async_send_message(
+        self, message: str, title: str | None = None, priority: int | None = None
+    ) -> None:
         """Publish a message to a topic."""
-        msg = Message(topic=self.topic, message=message, title=title)
+        priority = priority if priority is not None else 3
+        msg = Message(topic=self.topic, message=message, title=title, priority=priority)
         try:
             await self.ntfy.publish(msg)
         except NtfyUnauthorizedAuthenticationError as e:

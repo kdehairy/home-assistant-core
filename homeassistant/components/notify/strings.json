@@ -39,6 +39,10 @@
         "title": {
           "name": "Title",
           "description": "Title for your notification message."
+        },
+        "priority": {
+          "name": "Priority",
+          "description": "Priority of the notification."
         }
       }
     },

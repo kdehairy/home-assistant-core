@@ -57,7 +57,12 @@ class DemoNotify(NotifyEntity):
         )
         self._attr_name = entity_name
 
-    async def async_send_message(self, message: str, title: str | None = None) -> None:
+    async def async_send_message(
+        self,
+        message: str,
+        title: str | None = None,
+        priority: int | None = None,
+    ) -> None:
         """Send out a persistent notification."""
         persistent_notification.async_create(
             self.hass, message, title or "Demo notification"

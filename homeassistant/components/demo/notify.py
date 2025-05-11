@@ -43,7 +43,12 @@ class DemoNotifyEntity(NotifyEntity):
             name=device_name,
         )
 
-    async def async_send_message(self, message: str, title: str | None = None) -> None:
+    async def async_send_message(
+        self,
+        message: str,
+        title: str | None = None,
+        priority: int | None = None,
+    ) -> None:
         """Send a message to a user."""
         event_notification = {"message": message}
         if title is not None:
